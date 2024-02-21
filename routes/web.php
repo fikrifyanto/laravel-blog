@@ -1,7 +1,8 @@
 <?php
 
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Users/Index', [
-        'name' => 'Fikri'
-    ]);
-});
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('authenticate', [AuthController::class, 'authenticate']);
+
+Route::middleware('auth')->group(
+    fn () =>
+    Route::get('dashboard', DashboardController::class)
+);
