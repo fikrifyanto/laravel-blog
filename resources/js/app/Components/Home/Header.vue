@@ -46,12 +46,10 @@
                 </a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="#">
-                    <Button>
-                        <EnvelopeIcon class="h-6 w-6 text-white mr-1" />
-                        Subscribe
-                    </Button>
-                </a>
+                <Button class="max-w-max" @click="showSubsribePopup">
+                    <EnvelopeIcon class="h-6 w-6 text-white mr-1" />
+                    Subscribe
+                </Button>
             </div>
         </nav>
 
@@ -163,5 +161,30 @@ import { Bars3Icon, XMarkIcon, EnvelopeIcon } from "@heroicons/vue/24/outline";
 
 import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 
+import { usePopupStore } from "@/stores/popup";
+
 const mobileMenuOpen = ref(false);
+
+const popup = usePopupStore();
+
+function showSubsribePopup() {
+    popup.setTitle("Subscribe Newsletter");
+    popup.setType("form");
+    popup.setForms({
+        email: {
+            type: "text",
+            placeholder: "Type your email",
+        },
+    });
+    popup.setCancelButtonText("Cancel");
+    popup.setConfirmButtonText("Subscribe");
+    popup.show();
+
+    popup.change((data) => {
+        popup.setTitle("Thank You for Subscribe!");
+        popup.setCancelButtonText("Close");
+        popup.setConfirmButtonText("Okay!");
+        popup.show();
+    });
+}
 </script>

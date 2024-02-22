@@ -1,6 +1,6 @@
 <template>
-    <TransitionRoot as="template" :show="open">
-        <Dialog as="div" class="relative z-10" @close="open = false">
+    <TransitionRoot as="template" :show="popup.isShow">
+        <Dialog as="div" class="relative z-50" @close="popup.close">
             <TransitionChild
                 as="template"
                 enter="ease-out duration-300"
@@ -29,55 +29,78 @@
                         leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     >
                         <DialogPanel
-                            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+                            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-4"
                         >
-                            <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                <div class="sm:flex sm:items-start">
+                            <div class="bg-white px-4 pb-4 pt-5">
+                                <div class="flex flex-col">
                                     <div
-                                        class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
+                                        v-if="popup.type == 'danger'"
+                                        class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 mb-3"
                                     >
                                         <ExclamationTriangleIcon
                                             class="h-6 w-6 text-red-600"
                                             aria-hidden="true"
                                         />
                                     </div>
-                                    <div
-                                        class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
-                                    >
+                                    <div class="text-center">
                                         <DialogTitle
                                             as="h3"
-                                            class="text-base font-semibold leading-6 text-gray-900"
-                                            >Deactivate account</DialogTitle
+                                            v-if="popup.title"
+                                            class="text-lg font-semibold leading-6 text-gray-900 mb-6"
                                         >
-                                        <div class="mt-2">
+                                            {{ popup.title }}
+                                        </DialogTitle>
+                                        <div v-if="popup.message">
                                             <p class="text-sm text-gray-500">
-                                                Are you sure you want to
-                                                deactivate your account? All of
-                                                your data will be permanently
-                                                removed. This action cannot be
-                                                undone.
+                                                {{ popup.message }}
                                             </p>
+                                        </div>
+                                        <div v-if="popup.type == 'form'">
+                                            <template
+                                                v-for="(
+                                                    form, key
+                                                ) in popup.forms"
+                                            >
+                                                <FormInput
+                                                    v-model="
+                                                        popup.formSubmitted[key]
+                                                    "
+                                                    :id="key"
+                                                    :name="key"
+                                                    :placeholder="
+                                                        form.placeholder
+                                                    "
+                                                />
+                                            </template>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div
-                                class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+                                class="p-4 grid grid-cols-2 gap-4"
+                                v-if="
+                                    popup.cancelButtonText &&
+                                    popup.confirmButtonText
+                                "
                             >
                                 <button
                                     type="button"
-                                    class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                                    @click="open = false"
+                                    v-if="popup.cancelButtonText"
+                                    :class="[cancelButtonClass]"
+                                    class="w-full block justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm"
+                                    @click="popup.close"
                                 >
-                                    Deactivate
+                                    {{ popup.cancelButtonText }}
                                 </button>
                                 <button
                                     type="button"
-                                    class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                                    @click="open = false"
+                                    v-if="popup.confirmButtonText"
+                                    :class="[confirmButtonClass]"
+                                    class="w-full justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300"
+                                    @click="popup.confirm"
                                     ref="cancelButtonRef"
                                 >
-                                    Cancel
+                                    {{ popup.confirmButtonText }}
                                 </button>
                             </div>
                         </DialogPanel>
@@ -89,7 +112,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed } from "vue";
 import {
     Dialog,
     DialogPanel,
@@ -98,6 +121,22 @@ import {
     TransitionRoot,
 } from "@headlessui/vue";
 import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
+import { usePopupStore } from "../../stores/popup";
+import FormInput from "./Form/FormInput.vue";
 
-const open = ref(true);
+const cancelButtonClass = computed(() => {
+    return {
+        "hover:bg-slate-100 bg-transparent border border-slate-200 text-slate-600":
+            popup.cancelButtonType == "secondary",
+    };
+});
+
+const confirmButtonClass = computed(() => {
+    return {
+        "hover:bg-indigo-500 bg-indigo-600 text-white":
+            popup.confirmButtonType == "primary",
+    };
+});
+
+const popup = usePopupStore();
 </script>
