@@ -68,7 +68,7 @@
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 import { Bars2Icon } from "@heroicons/vue/24/outline";
-import { useSidebarStore } from "../stores/sidebar";
+import { useSidebarStore } from "@/stores/sidebar";
 
 const sidebar = useSidebarStore();
 </script>

@@ -8,6 +8,6 @@
 </template>
 
 <script setup>
-import Sidebar from "../Components/Sidebar.vue";
-import Header from "../Components/Header.vue";
+import Sidebar from "../Components/Admin/Sidebar.vue";
+import Header from "../Components/Admin/Header.vue";
 </script>

@@ -70,7 +70,7 @@ import {
     ChatBubbleLeftRightIcon,
     XMarkIcon,
 } from "@heroicons/vue/24/outline";
-import { useSidebarStore } from "../stores/sidebar";
+import { useSidebarStore } from "@/stores/sidebar";
 
 const sidebar = useSidebarStore();
 </script>

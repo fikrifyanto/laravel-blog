@@ -20,7 +20,7 @@ Route::get('/', HomeController::class);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate']);
 
-Route::middleware('/auth')->group(
+Route::middleware('auth')->group(
     fn () =>
     Route::get('/dashboard', DashboardController::class)
 );
