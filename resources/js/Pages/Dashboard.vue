@@ -1,10 +1,9 @@
 <template>
     <div class="grid grid-cols-5 min-h-screen">
         <Sidebar />
-        <div class="col-span-4">
-            <Header />
-            <div class="p-4"></div>
-        </div>
+        <Header>
+            <slot />
+        </Header>
     </div>
 </template>
 
