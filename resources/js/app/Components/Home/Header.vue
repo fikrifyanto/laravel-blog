@@ -181,10 +181,12 @@ function showSubsribePopup() {
     popup.show();
 
     popup.change((data) => {
-        popup.setTitle("Thank You for Subscribe!");
-        popup.setCancelButtonText("Close");
-        popup.setConfirmButtonText("Okay!");
-        popup.show();
+        if (data.isConfirm) {
+            popup.setTitle("Thank You for Subscribe!");
+            popup.setCancelButtonText("Close");
+            popup.setConfirmButtonText("Okay!");
+            popup.show();
+        }
     });
 }
 </script>
