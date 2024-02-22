@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,11 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('login', [AuthController::class, 'login'])->name('login');
-Route::post('authenticate', [AuthController::class, 'authenticate']);
+Route::get('/', HomeController::class);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/authenticate', [AuthController::class, 'authenticate']);
 
-Route::middleware('auth')->group(
+Route::middleware('/auth')->group(
     fn () =>
-    Route::get('dashboard', DashboardController::class)
+    Route::get('/dashboard', DashboardController::class)
 );

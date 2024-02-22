@@ -1,7 +1,6 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { createPinia } from 'pinia'
-import device from "vue-device-detector"
 
 createInertiaApp({
   progress: {
@@ -18,7 +17,6 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin)
       .use(pinia)
-      .use(device)
       .mount(el)
   },
 })
