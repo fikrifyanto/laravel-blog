@@ -16,13 +16,13 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+Route::middleware('auth')->group(
+    fn () =>
+    Route::get('/dashboard', DashboardController::class)
+);
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/category/{id}', [HomeController::class, 'category'])->name('login');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate']);
 Route::get('/{slug}', [HomeController::class, 'post']);
-
-Route::middleware('auth')->group(
-    fn () =>
-    Route::get('/dashboard', DashboardController::class)
-);

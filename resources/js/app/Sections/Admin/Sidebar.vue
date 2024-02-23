@@ -7,16 +7,16 @@
             <div
                 class="col-span-4 lg:col-span-5 bg-indigo-600 h-screen px-4 py-5"
             >
-                <div class="flex items-center">
+                <Link href="/" class="flex items-center">
                     <img
-                        class="h-8 w-auto ml-2"
+                        class="h-8 w-auto"
                         src="https://tailwindui.com/img/logos/mark.svg?color=white"
                         alt="Tailwind Blog"
                     />
                     <span class="font-medium text-white text-xl pl-2">
-                        Blog
+                        Tailwind Blog
                     </span>
-                </div>
+                </Link>
                 <nav class="mt-10 font-medium">
                     <ul role="list">
                         <li>
@@ -31,19 +31,25 @@
                                     class="rounded-md p-2 flex items-center gap-3 text-sm font-sans hover:bg-indigo-700 text-slate-300"
                                 >
                                     <UsersIcon class="h-6 w-6" />
-                                    Users
+                                    User
                                 </li>
                                 <li
                                     class="rounded-md p-2 flex items-center gap-3 text-sm font-sans hover:bg-indigo-700 text-slate-300"
                                 >
                                     <DocumentDuplicateIcon class="h-6 w-6" />
-                                    Posts
+                                    Post
+                                </li>
+                                <li
+                                    class="rounded-md p-2 flex items-center gap-3 text-sm font-sans hover:bg-indigo-700 text-slate-300"
+                                >
+                                    <PhotoIcon class="h-6 w-6" />
+                                    Media
                                 </li>
                                 <li
                                     class="rounded-md p-2 flex items-center gap-3 text-sm font-sans hover:bg-indigo-700 text-slate-300"
                                 >
                                     <ChatBubbleLeftRightIcon class="h-6 w-6" />
-                                    Comments
+                                    Comment
                                 </li>
                             </ul>
                         </li>
@@ -69,6 +75,7 @@ import {
     DocumentDuplicateIcon,
     ChatBubbleLeftRightIcon,
     XMarkIcon,
+    PhotoIcon,
 } from "@heroicons/vue/24/outline";
 import { useSidebarStore } from "@/stores/sidebar";
 
