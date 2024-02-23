@@ -4,15 +4,15 @@
             class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 sticky z-50"
             aria-label="Global"
         >
-            <div class="flex lg:flex-1">
-                <a href="#" class="-m-1.5 p-1.5">
-                    <span class="sr-only">Tailwind Blog</span>
-                    <img
-                        class="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="Tailwind Blog"
-                    />
-                </a>
+            <div class="flex lg:flex-1 items-center">
+                <img
+                    class="h-8 w-auto"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    alt="Tailwind Blog"
+                />
+                <span class="font-medium text-indigo-600 text-xl pl-2">
+                    Tailwind Blog
+                </span>
             </div>
             <div class="flex lg:hidden">
                 <button
