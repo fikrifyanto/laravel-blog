@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\CommentController;
 
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', DashboardController::class);
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/post', PostController::class);
+    Route::resource('/admin/category', CategoryController::class);
     Route::resource('/admin/media', MediaController::class);
     Route::resource('/admin/comment', CommentController::class);
 });

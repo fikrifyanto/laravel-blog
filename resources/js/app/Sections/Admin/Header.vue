@@ -58,7 +58,7 @@
                 </Popover>
             </div>
         </header>
-        <div class="min-h-full p-8">
+        <div class="p-4 lg:p-8">
             <slot />
         </div>
     </div>

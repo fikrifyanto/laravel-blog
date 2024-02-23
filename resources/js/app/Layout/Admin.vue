@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-5 min-h-screen">
+    <div class="grid grid-cols-5 min-h-screen bg-slate">
         <Sidebar />
         <Header>
             <slot />

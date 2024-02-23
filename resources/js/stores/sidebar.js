@@ -9,7 +9,7 @@ export const useSidebarStore = defineStore('sidebar', {
         show() {
             this.isShow = true
         },
-        hide() {
+        close() {
             this.isShow = false
         },
         bind() {
