@@ -1,6 +1,7 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { createPinia } from 'pinia'
+import * as helpers from './helpers'
 
 createInertiaApp({
   progress: {
@@ -14,9 +15,12 @@ createInertiaApp({
   },
   setup({ el, App, props, plugin }) {
     const pinia = createPinia()
-    createApp({ render: () => h(App, props) })
+    const app = createApp({ render: () => h(App, props) })
       .use(plugin)
       .use(pinia)
-      .mount(el)
+
+    app.config.globalProperties.$helpers = helpers
+
+    app.mount(el)
   },
 })

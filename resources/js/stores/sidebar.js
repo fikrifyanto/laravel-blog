@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
+import { isMobile } from "../helpers";
 
 export const useSidebarStore = defineStore('sidebar', {
     state: () => ({
-        isShow: false
+        isShow: isMobile() ? false : true
     }),
     actions: {
         show() {

@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\MediaController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +20,13 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::middleware('auth')->group(
-    fn () =>
-    Route::get('/dashboard', DashboardController::class)
-);
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', DashboardController::class);
+    Route::resource('/admin/user', UserController::class);
+    Route::resource('/admin/post', PostController::class);
+    Route::resource('/admin/media', MediaController::class);
+    Route::resource('/admin/comment', CommentController::class);
+});
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/category/{id}', [HomeController::class, 'category'])->name('login');

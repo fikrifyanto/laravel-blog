@@ -22,34 +22,93 @@
                         <li>
                             <ul role="list" class="flex flex-col gap-2">
                                 <li
-                                    class="rounded-md p-2 flex items-center gap-3 text-sm font-sans hover:bg-indigo-700 bg-indigo-700 text-white"
+                                    :class="{
+                                        'bg-indigo-700 text-white':
+                                            $page.url == '/admin/dashboard',
+                                        'bg-transparant text-slate-300':
+                                            $page.url != '/admin/dashboard',
+                                    }"
+                                    class="rounded-md p-2 text-sm font-sans hover:bg-indigo-700"
                                 >
-                                    <HomeIcon class="h-6 w-6" />
-                                    Dashboard
+                                    <Link
+                                        href="/admin/dashboard"
+                                        class="flex items-center gap-3"
+                                    >
+                                        <HomeIcon class="h-6 w-6" />
+                                        Dashboard
+                                    </Link>
                                 </li>
                                 <li
-                                    class="rounded-md p-2 flex items-center gap-3 text-sm font-sans hover:bg-indigo-700 text-slate-300"
+                                    :class="{
+                                        'bg-indigo-700 text-white':
+                                            $page.url == '/admin/user',
+                                        'bg-transparant text-slate-300':
+                                            $page.url != '/admin/user',
+                                    }"
+                                    class="rounded-md p-2 text-sm font-sans hover:bg-indigo-700"
                                 >
-                                    <UsersIcon class="h-6 w-6" />
-                                    User
+                                    <Link
+                                        href="/admin/user"
+                                        class="flex items-center gap-3"
+                                    >
+                                        <UsersIcon class="h-6 w-6" />
+                                        User
+                                    </Link>
                                 </li>
                                 <li
-                                    class="rounded-md p-2 flex items-center gap-3 text-sm font-sans hover:bg-indigo-700 text-slate-300"
+                                    :class="{
+                                        'bg-indigo-700 text-white':
+                                            $page.url == '/admin/post',
+                                        'bg-transparant text-slate-300':
+                                            $page.url != '/admin/post',
+                                    }"
+                                    class="rounded-md p-2 text-sm font-sans hover:bg-indigo-700"
                                 >
-                                    <DocumentDuplicateIcon class="h-6 w-6" />
-                                    Post
+                                    <Link
+                                        href="/admin/post"
+                                        class="flex items-center gap-3"
+                                    >
+                                        <DocumentDuplicateIcon
+                                            class="h-6 w-6"
+                                        />
+                                        Post
+                                    </Link>
                                 </li>
                                 <li
-                                    class="rounded-md p-2 flex items-center gap-3 text-sm font-sans hover:bg-indigo-700 text-slate-300"
+                                    :class="{
+                                        'bg-indigo-700 text-white':
+                                            $page.url == '/admin/media',
+                                        'bg-transparant text-slate-300':
+                                            $page.url != '/admin/media',
+                                    }"
+                                    class="rounded-md p-2 text-sm font-sans hover:bg-indigo-700"
                                 >
-                                    <PhotoIcon class="h-6 w-6" />
-                                    Media
+                                    <Link
+                                        href="/admin/media"
+                                        class="flex items-center gap-3"
+                                    >
+                                        <PhotoIcon class="h-6 w-6" />
+                                        Media
+                                    </Link>
                                 </li>
                                 <li
-                                    class="rounded-md p-2 flex items-center gap-3 text-sm font-sans hover:bg-indigo-700 text-slate-300"
+                                    :class="{
+                                        'bg-indigo-700 text-white':
+                                            $page.url == '/admin/comment',
+                                        'bg-transparant text-slate-300':
+                                            $page.url != '/admin/comment',
+                                    }"
+                                    class="rounded-md p-2 text-sm font-sans hover:bg-indigo-700"
                                 >
-                                    <ChatBubbleLeftRightIcon class="h-6 w-6" />
-                                    Comment
+                                    <Link
+                                        href="/admin/comment"
+                                        class="flex items-center gap-3"
+                                    >
+                                        <ChatBubbleLeftRightIcon
+                                            class="h-6 w-6"
+                                        />
+                                        Comment
+                                    </Link>
                                 </li>
                             </ul>
                         </li>
@@ -69,6 +128,7 @@
 </template>
 
 <script setup>
+import { Link } from "@inertiajs/vue3";
 import {
     HomeIcon,
     UsersIcon,
