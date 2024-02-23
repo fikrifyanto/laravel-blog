@@ -4,7 +4,7 @@ import { createPinia } from 'pinia'
 
 createInertiaApp({
   progress: {
-    color: '#29d',
+    color: '#4F46E5',
     includeCSS: true,
     showSpinner: false,
   },

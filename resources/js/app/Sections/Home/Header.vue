@@ -4,7 +4,7 @@
             class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 sticky z-50"
             aria-label="Global"
         >
-            <div class="flex lg:flex-1 items-center">
+            <Link href="/" class="flex lg:flex-1 items-center">
                 <img
                     class="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -13,7 +13,7 @@
                 <span class="font-medium text-indigo-600 text-xl pl-2">
                     Tailwind Blog
                 </span>
-            </div>
+            </Link>
             <div class="flex lg:hidden">
                 <button
                     type="button"
@@ -26,24 +26,24 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <a
-                    href="#"
+                <Link
+                    href="/category/business"
                     class="text-sm font-semibold leading-6 text-gray-900"
                 >
                     Business
-                </a>
-                <a
-                    href="#"
+                </Link>
+                <Link
+                    href="/category/lifestyle"
                     class="text-sm font-semibold leading-6 text-gray-900"
                 >
                     Lifestyle
-                </a>
-                <a
-                    href="#"
+                </Link>
+                <Link
+                    href="/category/technology"
                     class="text-sm font-semibold leading-6 text-gray-900"
                 >
                     Technology
-                </a>
+                </Link>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <Button class="max-w-max" @click="showSubsribePopup">
@@ -149,6 +149,7 @@
 <script setup>
 import { ref } from "vue";
 import Button from "../../Components/Button.vue";
+import { Link } from "@inertiajs/vue3";
 import {
     Dialog,
     DialogPanel,

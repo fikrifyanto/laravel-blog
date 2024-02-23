@@ -4,7 +4,6 @@
         <Marketing />
         <Lifestyle />
         <Technology />
-        <Newsletter />
     </HomeLayout>
 </template>
 
@@ -14,5 +13,4 @@ import Hero from "../../Sections/Home/Hero.vue";
 import Marketing from "../../Sections/Home/Marketing.vue";
 import Lifestyle from "../../Sections/Home/Lifestyle.vue";
 import Technology from "../../Sections/Home/Technology.vue";
-import Newsletter from "../../Sections/Home/Newsletter.vue";
 </script>
