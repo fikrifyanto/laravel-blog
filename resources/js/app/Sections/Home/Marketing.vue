@@ -67,8 +67,6 @@
 </template>
 
 <script setup>
-import Button from "../Button.vue";
-
 const posts = [
     {
         id: 1,

@@ -43,9 +43,9 @@
 </template>
 
 <script setup>
-import FormGroup from "../Components/Form/FormGroup.vue";
-import FormInput from "../Components/Form/FormInput.vue";
-import Button from "../Components/Button.vue";
+import FormGroup from "../../Components/Form/FormGroup.vue";
+import FormInput from "../../Components/Form/FormInput.vue";
+import Button from "../../Components/Button.vue";
 
 import { useForm } from "@inertiajs/vue3";
 

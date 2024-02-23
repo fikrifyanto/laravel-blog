@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import Header from "../Components/Home/Header.vue";
-import Footer from "../Components/Home/Footer.vue";
-import Popup from "@/app/Components/Popup.vue";
+import Header from "../Sections/Home/Header.vue";
+import Footer from "../Sections/Home/Footer.vue";
+import Popup from "../Components/Popup.vue";
 </script>

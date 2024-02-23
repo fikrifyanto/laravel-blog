@@ -111,7 +111,7 @@
 
 <script setup>
 import { CalendarDaysIcon, HandRaisedIcon } from "@heroicons/vue/24/outline";
-import Button from "../Button.vue";
+import Button from "../../Components/Button.vue";
 import { usePopupStore } from "../../../stores/popup";
 
 const popup = usePopupStore();
