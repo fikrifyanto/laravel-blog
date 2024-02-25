@@ -44,12 +44,13 @@
                                 class="text-indigo-600 px-2"
                                 >Edit</Link
                             >
-                            <Link
+                            <button
+                                @click="removeUser(user?.id)"
                                 v-if="user?.role != 'admin'"
-                                href=""
                                 class="text-red-600 px-2"
-                                >Delete</Link
                             >
+                                Delete
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -63,9 +64,35 @@
 import AdminLayout from "../../../Layout/Admin.vue";
 import Pagination from "../../../Components/Pagination.vue";
 import Button from "../../../Components/Button.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
+import { usePopupStore } from "../../../../stores/popup";
+import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
     users: Object,
 });
+
+const popup = usePopupStore();
+
+function removeUser(userId) {
+    popup.setTitle("Are you sure?");
+    popup.setMessage("Data cannot be restore after deleted");
+    popup.setType("danger");
+    popup.setForms({
+        email: {
+            type: "text",
+            placeholder: "Type your email",
+        },
+    });
+    popup.setCancelButtonText("Cancel");
+    popup.setConfirmButtonText("Delete!");
+    popup.show();
+
+    popup.change((data) => {
+        if (data.isConfirm) {
+            Inertia.delete(`/admin/user/${userId}`);
+            router.reload({ only: ["users"] });
+        }
+    });
+}
 </script>

@@ -44,6 +44,7 @@ const props = defineProps({
 const isLoading = ref(false);
 
 const form = useForm({
+    _method: "PUT",
     name: props.user.name,
     username: props.user.username,
     password: null,
