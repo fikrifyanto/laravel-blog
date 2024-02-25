@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [HomeController::class, 'index']);
+Route::post('/{slug}/comment', [HomeController::class, 'comment']);
 Route::get('/category/{category:slug}', [HomeController::class, 'category'])->name('login');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate']);

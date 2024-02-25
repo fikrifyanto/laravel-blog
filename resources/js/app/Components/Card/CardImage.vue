@@ -39,10 +39,7 @@
             />
             <div class="text-sm leading-6">
                 <p class="font-semibold text-gray-900">
-                    <a :href="`/author/${post?.user?.username}`">
-                        <span class="absolute inset-0" />
-                        {{ post?.user?.name }}
-                    </a>
+                    {{ post?.user?.name }}
                 </p>
                 <p class="text-gray-600">
                     {{ $helpers.capitalizeFirstLetter(post?.user?.role) }}

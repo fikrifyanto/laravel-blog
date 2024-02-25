@@ -25,25 +25,20 @@
             class="flex flex-col gap-4 max-w-xl mt-8"
         >
             <FormGroup label="Name" for="name">
-                <FormInput
-                    v-model="form.name"
-                    class="font-semibold !text-xl"
-                    id="name"
-                    type="text"
-                />
+                <FormInput v-model="form.name" id="name" type="text" required />
             </FormGroup>
             <FormGroup label="Email" for="email">
                 <FormInput
                     v-model="form.email"
-                    class="font-semibold !text-xl"
                     id="email"
-                    type="text"
+                    type="email"
+                    required
                 />
             </FormGroup>
             <FormGroup label="Comment" for="content">
-                <FormTextarea v-model="form.content" id="content" />
+                <FormTextarea v-model="form.content" id="content" required />
             </FormGroup>
-            <Button>Comment</Button>
+            <Button type="submit" :loading="isLoading">Comment</Button>
         </form>
     </div>
 </template>
@@ -54,13 +49,38 @@ import FormInput from "../../Components/Form/FormInput.vue";
 import FormTextarea from "../../Components/Form/FormTextarea.vue";
 import Button from "../../Components/Button.vue";
 import { useForm } from "@inertiajs/vue3";
+import { ref } from "vue";
+
+const props = defineProps({
+    slug: String,
+    comments: Array,
+});
+
+const emit = defineEmits(["submit"]);
+
+const isLoading = ref(false);
 
 const form = useForm({
+    name: null,
     email: null,
     content: null,
 });
 
-const props = defineProps({
-    comments: Array,
-});
+function submit() {
+    isLoading.value = true;
+
+    form.post(`/${props.slug}/comment`, {
+        onSuccess: () => {
+            form.name = null;
+            form.email = null;
+            form.content = null;
+
+            isLoading.value = false;
+
+            emit("submit");
+        },
+        preserveState: false,
+        preserveScroll: true,
+    });
+}
 </script>

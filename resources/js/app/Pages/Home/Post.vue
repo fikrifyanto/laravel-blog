@@ -66,13 +66,14 @@
                     />
                 </div>
             </div>
-            <Comment :comments="post.comments"/>
+            <Comment @submit="reload" :comments="post.comments" :slug="post.slug"/>
         </div>
         <Related :posts="props.related" />
     </HomeLayout>
 </template>
 
 <script setup>
+import {router} from "@inertiajs/vue3"
 import HomeLayout from "../../Layout/Home.vue";
 import Related from "../../Sections/Home/Related.vue";
 import Comment from "../../Sections/Home/Comment.vue"
@@ -86,4 +87,8 @@ const props = defineProps({
 const menus = props.topCategories.map((category) => {
     return category.name
 })
+
+function reload() {
+    router.reload({ only: ["post"] })
+}
 </script>

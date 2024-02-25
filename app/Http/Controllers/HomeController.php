@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -73,6 +74,15 @@ class HomeController extends Controller
             'post' => $post,
             'related' => $related
         ]);
+    }
+
+    public function comment(Request $request, string $slug)
+    {
+        $post = Post::whereSlug($slug)->with('media')->with('category')->with('comments')->first();
+
+        $post->comments()->create($request->input());
+
+        return redirect()->intended('/' . $slug);
     }
 
     public function all()

@@ -29,10 +29,7 @@
             />
             <div class="text-sm leading-6">
                 <p class="font-semibold text-gray-900">
-                    <a :href="props.post?.user?.href">
-                        <span class="absolute inset-0" />
-                        {{ props.post?.user?.name }}
-                    </a>
+                    {{ props.post?.user?.name }}
                 </p>
                 <p class="text-gray-600">
                     {{ $helpers.capitalizeFirstLetter(props.post?.user?.role) }}
