@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,7 +13,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Category');
+        $categories = Category::paginate(8);
+
+        return Inertia::render('Admin/Category/Index', ['categories' => $categories]);
     }
 
     /**
@@ -20,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Category/Add');
     }
 
     /**
@@ -28,7 +31,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create($request->input());
+
+        return redirect()->intended('admin/category');
     }
 
     /**
@@ -44,7 +49,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        return Inertia::render('Admin/Category/Edit', ['category' => $category]);
     }
 
     /**
@@ -52,7 +59,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Category::find($id)->update($request->input());
+
+        return redirect()->intended('admin/category');
     }
 
     /**
@@ -60,6 +69,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Category::destroy($id);
     }
 }

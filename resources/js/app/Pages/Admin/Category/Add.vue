@@ -2,25 +2,15 @@
     <AdminLayout>
         <div class="flex justify-between mb-8 gap-4">
             <div>
-                <h1 class="font-medium">Add User</h1>
+                <h1 class="font-medium">Add Category</h1>
                 <p class="text-slate-600 text-sm mt-2">
-                    Add the users including their name, title, email and role.
+                    Add the categories including their name
                 </p>
             </div>
         </div>
         <form @submit.prevent="submit" class="flex flex-col gap-4 max-w-xl">
             <FormGroup label="Name" for="name">
                 <FormInput v-model="form.name" id="name" type="text" />
-            </FormGroup>
-            <FormGroup label="Username" for="username">
-                <FormInput v-model="form.username" id="username" type="text" />
-            </FormGroup>
-            <FormGroup label="Password" for="password">
-                <FormInput
-                    v-model="form.password"
-                    id="password"
-                    type="password"
-                />
             </FormGroup>
             <Button :loading="isLoading" type="submit" class="mt-2">Add</Button>
         </form>
@@ -48,6 +38,6 @@ function submit(event) {
 
     isLoading.value = true;
 
-    form.post("/admin/user");
+    form.post("/admin/category");
 }
 </script>

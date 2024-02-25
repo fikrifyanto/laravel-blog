@@ -12,16 +12,6 @@
             <FormGroup label="Name" for="name">
                 <FormInput v-model="form.name" id="name" type="text" />
             </FormGroup>
-            <FormGroup label="Username" for="username">
-                <FormInput v-model="form.username" id="username" type="text" />
-            </FormGroup>
-            <FormGroup label="Password" for="password">
-                <FormInput
-                    v-model="form.password"
-                    id="password"
-                    type="password"
-                />
-            </FormGroup>
             <Button :loading="isLoading" type="submit" class="mt-2"
                 >Edit</Button
             >
@@ -38,15 +28,14 @@ import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 
 const props = defineProps({
-    user: Object,
+    category: Object,
 });
 
 const isLoading = ref(false);
 
 const form = useForm({
-    name: props.user.name,
-    username: props.user.username,
-    password: null,
+    _method: "PUT",
+    name: props.category.name,
 });
 
 function submit(event) {
@@ -54,6 +43,6 @@ function submit(event) {
 
     isLoading.value = true;
 
-    form.post(`/admin/user/${props.user.id}`);
+    form.post(`/admin/category/${props.category.id}`);
 }
 </script>
