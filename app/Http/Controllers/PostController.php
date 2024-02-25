@@ -69,9 +69,10 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $post = Post::find($id);
+        $post = Post::with('media')->find($id);
+        $categories = Category::all();
 
-        return Inertia::render('Admin/Post/Edit', ['post' => $post]);
+        return Inertia::render('Admin/Post/Edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**
@@ -79,7 +80,23 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Post::find($id)->update($request->input());
+        $post = $request->input();
+        $post['user_id'] = auth()->user()->id;
+        $post['slug'] = Str::slug($post['title'], '-');
+
+        if ($request->file()) {
+            $file = $request->file('featured_image');
+            $filePath = $file->store('uploads', 'public');
+
+            $media = Media::create([
+                'path' => $filePath,
+                'name' => $file->getClientOriginalName(),
+            ]);
+
+            $post['media_id'] = $media->id;
+        }
+
+        Post::find($id)->update($post);
 
         return redirect()->intended('admin/post');
     }

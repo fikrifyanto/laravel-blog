@@ -17,6 +17,7 @@ class Post extends Model
     protected $fillable = [
         'user_id',
         'category_id',
+        'media_id',
         'slug',
         'title',
         'content',
@@ -31,5 +32,10 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function media()
+    {
+        return $this->hasOne(Media::class, 'id', 'media_id');
     }
 }
