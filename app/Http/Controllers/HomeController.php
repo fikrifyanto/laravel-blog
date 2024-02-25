@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Home/Index');
+        $topCategories = Category::withCount('post')
+            ->with(['post' => function ($query) {
+                $query->with('user')->with('media');
+            }])
+            ->orderByDesc('post_count')
+            ->take(3)
+            ->get();
+
+        return Inertia::render('Home/Index', ['topCategories' => $topCategories]);
     }
 
     public function category()

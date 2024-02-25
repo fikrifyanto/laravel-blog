@@ -30,7 +30,7 @@
                 />
             </div>
             <div
-                class="mx-auto max-w-2xl pb-32 pt-24 sm:pb-48 sm:pt-20 lg:pb-56 lg:pt-28"
+                class="mx-auto max-w-3xl pb-32 pt-24 sm:pb-48 sm:pt-20 lg:pb-56 lg:pt-28"
             >
                 <div class="hidden sm:mb-8 sm:flex sm:justify-center">
                     <div
@@ -50,7 +50,7 @@
                     <h1
                         class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
                     >
-                        Data to enrich your online business
+                        Where SEO best practices meet real-world results.
                     </h1>
                     <p class="mt-6 text-lg leading-8 text-gray-600">
                         Anim aute id magna aliqua ad ad non deserunt sunt. Qui

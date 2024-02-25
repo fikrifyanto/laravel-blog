@@ -195,13 +195,13 @@
                 </div>
             </div>
         </div>
-        <Highlight />
+        <Related />
     </HomeLayout>
 </template>
 
 <script setup>
 import HomeLayout from "../../Layout/Home.vue";
-import Highlight from "../../Sections/Home/Highlight.vue";
+import Related from "../../Sections/Home/Related.vue";
 import {
     CloudArrowUpIcon,
     LockClosedIcon,

@@ -27,22 +27,11 @@
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
                 <Link
-                    href="/category/business"
+                    v-for="menu in props.menus"
+                    :href="`/category/${menu}`"
                     class="text-sm font-semibold leading-6 text-gray-900"
                 >
-                    Business
-                </Link>
-                <Link
-                    href="/category/lifestyle"
-                    class="text-sm font-semibold leading-6 text-gray-900"
-                >
-                    Lifestyle
-                </Link>
-                <Link
-                    href="/category/technology"
-                    class="text-sm font-semibold leading-6 text-gray-900"
-                >
-                    Technology
+                    {{ menu }}
                 </Link>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -163,6 +152,10 @@ import { Bars3Icon, XMarkIcon, EnvelopeIcon } from "@heroicons/vue/24/outline";
 import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 
 import { usePopupStore } from "@/stores/popup";
+
+const props = defineProps({
+    menus: Array
+})
 
 const mobileMenuOpen = ref(false);
 

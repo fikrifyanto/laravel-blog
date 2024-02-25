@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Media;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +21,7 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => User::factory()->create()->id,
-            'category_id' => Category::factory()->create()->id,
+            'media_id' => Media::factory()->create()->id,
             'slug' => fake()->slug(),
             'title' => fake()->sentence(10),
             'content' => fake()->sentence(45),

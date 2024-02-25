@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->enum('role', ['admin', 'author'])->default('author');
+            $table->string('image_path')->nullable();
+            $table->string('image_url');
             $table->rememberToken();
             $table->timestamps();
         });
