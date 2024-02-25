@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/admin/category', CategoryController::class);
     Route::resource('/admin/media', MediaController::class);
     Route::resource('/admin/comment', CommentController::class);
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 Route::get('/', [HomeController::class, 'index']);

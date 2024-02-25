@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class Handler extends ExceptionHandler
 {
@@ -50,5 +51,14 @@ class Handler extends ExceptionHandler
         }
 
         return $response;
+    }
+
+    public function share(Request $request)
+    {
+        return array_merge(parent::share($request), [
+            'auth.user' => fn () => $request->user()
+                ? $request->user()->only('id', 'username', 'name', 'image_url')
+                : null,
+        ]);
     }
 }

@@ -13,6 +13,13 @@ class AuthController extends Controller
         return Inertia::render('Admin/Login');
     }
 
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->intended('login');
+    }
+
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
