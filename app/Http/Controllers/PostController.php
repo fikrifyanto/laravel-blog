@@ -45,7 +45,7 @@ class PostController extends Controller
 
             $media = Media::create([
                 'path' => $filePath,
-                'name' => $file->getClientOriginalName(),
+                'name' => $post['title'] . ' Image',
             ]);
 
             $post['media_id'] = $media->id;

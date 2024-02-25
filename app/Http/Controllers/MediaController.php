@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Media;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class MediaController extends Controller
 {
@@ -12,7 +14,9 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Media');
+        $medias = Media::paginate(8);
+
+        return Inertia::render('Admin/Media/Index', ['medias' => $medias]);
     }
 
     /**
@@ -44,7 +48,9 @@ class MediaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $media = Media::find($id);
+
+        return Inertia::render('Admin/Media/Edit', ['media' => $media]);
     }
 
     /**
@@ -52,7 +58,9 @@ class MediaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Media::find($id)->update($request->input());
+
+        return redirect()->intended('admin/media');
     }
 
     /**
@@ -60,6 +68,12 @@ class MediaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $media = Media::find($id);
+
+        if (Storage::disk('public')->exists($media->path)) {
+            Storage::disk('public')->delete($media->path);
+        }
+
+        $media->delete();
     }
 }

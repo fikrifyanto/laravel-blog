@@ -2,25 +2,20 @@
     <AdminLayout>
         <div class="flex justify-between mb-8 gap-4">
             <div>
-                <h1 class="font-medium">Edit User</h1>
+                <h1 class="font-medium">Edit Name</h1>
                 <p class="text-slate-600 text-sm mt-2">
-                    Edit the users including their name, title, email and role.
+                    Edit the medias including their name
                 </p>
             </div>
         </div>
         <form @submit.prevent="submit" class="flex flex-col gap-4 max-w-xl">
+            <img
+                class="max-h-96 object-contain"
+                :src="`/storage/${media?.path}`"
+                :alt="media.name"
+            />
             <FormGroup label="Name" for="name">
                 <FormInput v-model="form.name" id="name" type="text" />
-            </FormGroup>
-            <FormGroup label="Username" for="username">
-                <FormInput v-model="form.username" id="username" type="text" />
-            </FormGroup>
-            <FormGroup label="Password" for="password">
-                <FormInput
-                    v-model="form.password"
-                    id="password"
-                    type="password"
-                />
             </FormGroup>
             <Button :loading="isLoading" type="submit" class="mt-2"
                 >Edit</Button
@@ -38,16 +33,14 @@ import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 
 const props = defineProps({
-    user: Object,
+    media: Object,
 });
 
 const isLoading = ref(false);
 
 const form = useForm({
     _method: "PUT",
-    name: props.user.name,
-    username: props.user.username,
-    password: null,
+    name: props.media.name,
 });
 
 function submit(event) {
@@ -55,6 +48,6 @@ function submit(event) {
 
     isLoading.value = true;
 
-    form.post(`/admin/user/${props.user.id}`);
+    form.post(`/admin/media/${props.media.id}`);
 }
 </script>
