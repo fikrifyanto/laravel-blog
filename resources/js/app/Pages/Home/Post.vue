@@ -1,5 +1,5 @@
 <template>
-    <HomeLayout>
+    <HomeLayout :menus="menus">
         <div
             class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 -mt-20 lg:overflow-visible lg:px-0"
         >
@@ -77,6 +77,11 @@ import Related from "../../Sections/Home/Related.vue";
 
 const props = defineProps({
     post: Object,
-    related: Array
+    related: Array,
+    topCategories: Array
+})
+
+const menus = props.topCategories.map((category) => {
+    return category.name
 })
 </script>

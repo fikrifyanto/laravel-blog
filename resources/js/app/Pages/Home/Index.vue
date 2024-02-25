@@ -1,6 +1,6 @@
 <template>
     <HomeLayout :menus="menus">
-        <Hero />
+        <Hero :latest-post="props.latestPost" />
         <template v-for="(category, key) in props.topCategories">
             <Highlight :category="category" v-if="key == 0" />
             <HighlightImage :category="category" v-else />
@@ -15,7 +15,8 @@ import Highlight from "../../Sections/Home/Highlight.vue";
 import HighlightImage from "../../Sections/Home/HighlightImage.vue";
 
 const props = defineProps({
-    topCategories: Array
+    topCategories: Array,
+    latestPost: Object
 })
 
 const menus = props.topCategories.map((category) => {

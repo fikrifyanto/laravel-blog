@@ -34,4 +34,5 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/category/{category:slug}', [HomeController::class, 'category'])->name('login');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate']);
+Route::get('/post', [HomeController::class, 'all']);
 Route::get('/{slug}', [HomeController::class, 'post']);

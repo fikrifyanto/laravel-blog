@@ -34,16 +34,15 @@
             >
                 <div class="hidden sm:mb-8 sm:flex sm:justify-center">
                     <div
-                        class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+                        class="relative flex items-center gap-0.5 rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
                     >
-                        New Article: AI in 2024 will be amazing! You need..
-                        <a href="#" class="font-semibold text-indigo-600 ml-1"
+                        New Article: <span class="line-clamp-1 max-w-sm">{{ props.latestPost?.title }}</span>
+                        <Link :href="`/${props.latestPost?.slug}`" class="font-semibold text-indigo-600 ml-1"
                             ><span
                                 class="absolute inset-0"
                                 aria-hidden="true"
                             />Read more
-                            <span aria-hidden="true">&rarr;</span></a
-                        >
+                            <span aria-hidden="true">&rarr;</span></Link >
                     </div>
                 </div>
                 <div class="text-center">
@@ -58,11 +57,10 @@
                         veniam occaecat fugiat aliqua.
                     </p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a
-                            href="#"
+                        <Link
+                            href="post"
                             class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >Show All Posts</a
-                        >
+                            >Show All Posts</Link>
                     </div>
                 </div>
             </div>
@@ -97,3 +95,11 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import {Link} from "@inertiajs/vue3"
+
+const props = defineProps({
+    latestPost: Object
+})
+</script>

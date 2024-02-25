@@ -18,7 +18,9 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return Inertia::render('Home/Index', ['topCategories' => $topCategories]);
+        $latestPost = Post::latest('date')->first();
+
+        return Inertia::render('Home/Index', ['topCategories' => $topCategories, 'latestPost' => $latestPost]);
     }
 
     public function category(Category $category)
@@ -46,6 +48,10 @@ class HomeController extends Controller
     {
         $post = Post::whereSlug($slug)->with('media')->with('category')->first();
 
+        if (!$post) {
+            abort(404);
+        }
+
         $related = Post::where('category_id', $post->category_id)
             ->where('id', '!=', $post->id)
             ->with('category')
@@ -66,6 +72,24 @@ class HomeController extends Controller
             'topCategories' => $topCategories,
             'post' => $post,
             'related' => $related
+        ]);
+    }
+
+    public function all()
+    {
+        $topCategories = Category::withCount('post')
+            ->with(['post' => function ($query) {
+                $query->with('user')->with('media')->with('category');
+            }])
+            ->orderByDesc('post_count')
+            ->take(3)
+            ->get();
+
+        $posts = Post::with('user')->with('category')->paginate(9);
+
+        return Inertia::render('Home/All', [
+            'topCategories' => $topCategories,
+            'posts' => $posts,
         ]);
     }
 }
