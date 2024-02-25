@@ -1,4 +1,8 @@
 <template>
+    <Head>
+        <title>Tailwind Blog - {{ props.category?.name }}</title>
+        <meta name="description" content="Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.">
+    </Head>
     <HomeLayout :menus="menus">
         <div class="bg-white py-24 min-h-screen">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -40,6 +44,7 @@
 import HomeLayout from "../../Layout/Home.vue";
 import Pagination from "../../Components/Pagination.vue";
 import Card from "../../Components/Card/Card.vue";
+import { Head } from '@inertiajs/vue3'
 
 const props = defineProps({
     posts: Object,

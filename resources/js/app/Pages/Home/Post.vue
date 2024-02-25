@@ -1,4 +1,8 @@
 <template>
+    <Head>
+        <title>{{ props.post?.title }}</title>
+        <meta name="description" content="Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.">
+    </Head>
     <HomeLayout :menus="menus">
         <div
             class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 -mt-20 lg:overflow-visible lg:px-0"
@@ -77,6 +81,7 @@ import {router} from "@inertiajs/vue3"
 import HomeLayout from "../../Layout/Home.vue";
 import Related from "../../Sections/Home/Related.vue";
 import Comment from "../../Sections/Home/Comment.vue"
+import { Head } from '@inertiajs/vue3'
 
 const props = defineProps({
     post: Object,
