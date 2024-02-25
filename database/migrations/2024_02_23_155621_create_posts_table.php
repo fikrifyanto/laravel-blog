@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('category_id');
+            $table->integer('media_id')->nullable();
+            $table->string('slug')->unique();
+            $table->string('title');
+            $table->longText('content');
+            $table->date('date');
             $table->timestamps();
         });
     }

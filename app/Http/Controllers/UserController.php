@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/User');
+        $users = User::paginate();
+        return Inertia::render('Admin/User/Index', ['users' => $users]);
     }
 
     /**
@@ -20,7 +23,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return Inertia::render('Admin/User/Add', ['categories' => $categories]);
     }
 
     /**
@@ -28,7 +33,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->input());
+
+        return redirect()->intended('admin/user');
     }
 
     /**
@@ -44,7 +51,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+
+        return Inertia::render('Admin/User/Edit', ['user' => $user]);
     }
 
     /**
@@ -52,7 +61,9 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        User::find($id)->update($request->input());
+
+        return redirect()->intended('admin/user');
     }
 
     /**

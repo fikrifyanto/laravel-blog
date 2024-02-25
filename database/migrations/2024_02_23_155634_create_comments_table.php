@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->string('parent_id')->nullable();
+            $table->string('email');
+            $table->longText('content');
             $table->timestamps();
         });
     }

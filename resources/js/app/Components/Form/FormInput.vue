@@ -19,7 +19,7 @@ const props = defineProps({
     name: String,
     type: {
         validator(value) {
-            return ["text", "password", "email"].includes(value);
+            return ["text", "password", "email", "date"].includes(value);
         },
     },
     autocomplete: String,
