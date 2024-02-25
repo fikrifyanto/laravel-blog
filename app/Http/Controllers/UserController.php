@@ -84,9 +84,13 @@ class UserController extends Controller
 
         if (!$user['password']) $user['password'] = User::find($id)->password;
 
-        User::find($id)->update($user);
+        $user = User::find($id)->update($user);
 
-        return redirect()->intended('admin/user');
+        if (User::find($id)->role == 'admin') {
+            return redirect()->intended('admin/user');
+        }
+
+        return redirect()->intended('admin/post');
     }
 
     /**
