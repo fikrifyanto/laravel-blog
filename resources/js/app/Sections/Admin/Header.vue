@@ -17,10 +17,12 @@
                     >
                         <img
                             class="h-8 w-8 rounded-full"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt="Admin Profile"
+                            :src="user?.image_url"
+                            :alt="user?.name"
                         />
-                        <span class="font-medium text-sm">Tim Cook</span>
+                        <span class="font-medium text-sm">{{
+                            user?.name
+                        }}</span>
                         <ChevronDownIcon
                             class="h-4 w-4 text-slate-400 stroke-2"
                         />
@@ -44,12 +46,18 @@
                                     <li
                                         class="hover:bg-slate-50 px-4 py-1.5 text-sm text-slate-600"
                                     >
-                                        Your Profile
+                                        <Link
+                                            :href="`/admin/user/${user.id}/edit`"
+                                        >
+                                            Your Profile
+                                        </Link>
                                     </li>
                                     <li
                                         class="hover:bg-slate-50 px-4 py-1.5 text-sm text-slate-600"
                                     >
-                                        Sign Out
+                                        <Link href="/logout" method="post">
+                                            Log Out
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
@@ -69,6 +77,12 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 import { Bars2Icon } from "@heroicons/vue/24/outline";
 import { useSidebarStore } from "@/stores/sidebar";
+import { usePage, Link } from "@inertiajs/vue3";
+import { computed } from "vue";
+
+const page = usePage();
+
+const user = computed(() => page.props.auth.user);
 
 const sidebar = useSidebarStore();
 </script>

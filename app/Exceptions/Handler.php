@@ -52,13 +52,4 @@ class Handler extends ExceptionHandler
 
         return $response;
     }
-
-    public function share(Request $request)
-    {
-        return array_merge(parent::share($request), [
-            'auth.user' => fn () => $request->user()
-                ? $request->user()->only('id', 'username', 'name', 'image_url')
-                : null,
-        ]);
-    }
 }

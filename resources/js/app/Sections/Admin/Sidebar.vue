@@ -22,6 +22,7 @@
                         <li>
                             <ul role="list" class="flex flex-col gap-2">
                                 <li
+                                v-if="user?.role == 'admin'"
                                     :class="{
                                         'bg-indigo-700 text-white':
                                             $page.url == '/admin/user',
@@ -136,9 +137,8 @@
 
 <script setup>
 import { isMobile } from "../../../helpers";
-import { Link, router } from "@inertiajs/vue3";
+import { Link, router, usePage } from "@inertiajs/vue3";
 import {
-    HomeIcon,
     UsersIcon,
     DocumentDuplicateIcon,
     ChatBubbleLeftRightIcon,
@@ -147,8 +147,13 @@ import {
     TagIcon
 } from "@heroicons/vue/24/outline";
 import { useSidebarStore } from "@/stores/sidebar";
+import { computed } from "vue";
 
 const sidebar = useSidebarStore();
+
+const page = usePage()
+
+const user = computed(() => page.props.auth.user)
 
 router.on('navigate', () => {
     if(isMobile()) {

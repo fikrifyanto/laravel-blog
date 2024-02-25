@@ -18,7 +18,7 @@
         <form @submit.prevent="submit" class="flex flex-col gap-4 max-w-xl">
             <img
                 class="max-h-96 object-contain"
-                :src="`/storage/${media?.path}`"
+                :src="media?.url"
                 :alt="media.name"
             />
             <FormGroup label="Name" for="name">
