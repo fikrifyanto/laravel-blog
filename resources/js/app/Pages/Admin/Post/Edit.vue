@@ -1,4 +1,11 @@
 <template>
+    <Head>
+        <title>Edit User</title>
+        <meta
+            name="description"
+            content="Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua."
+        />
+    </Head>
     <AdminLayout>
         <div class="flex justify-between mb-8 gap-4">
             <div>
@@ -37,7 +44,7 @@
                 <FormGroup label="Featured Image" for="featured-image">
                     <FormFile
                         v-model="form.featured_image"
-                        :file-url="`/storage/${props.post.media.path}`"
+                        :file-url="props.post.media.url"
                         id="featured-image"
                         accept="image/*"
                     />
@@ -151,6 +158,7 @@ import {
     ListboxOptions,
 } from "@headlessui/vue";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
+import { Head } from "@inertiajs/vue3";
 
 const props = defineProps({
     categories: Array,

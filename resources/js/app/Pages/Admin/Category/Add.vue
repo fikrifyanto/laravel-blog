@@ -1,4 +1,11 @@
 <template>
+    <Head>
+        <title>Add Category</title>
+        <meta
+            name="description"
+            content="Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua."
+        />
+    </Head>
     <AdminLayout>
         <div class="flex justify-between mb-8 gap-4">
             <div>
@@ -24,6 +31,7 @@ import FormInput from "../../../Components/Form/FormInput.vue";
 import Button from "../../../Components/Button.vue";
 import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
+import { Head } from "@inertiajs/vue3";
 
 const isLoading = ref(false);
 

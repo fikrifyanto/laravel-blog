@@ -1,4 +1,11 @@
 <template>
+    <Head>
+        <title>All Medias</title>
+        <meta
+            name="description"
+            content="Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua."
+        />
+    </Head>
     <AdminLayout>
         <div class="flex justify-between mb-8 gap-4">
             <div>
@@ -7,11 +14,6 @@
                     A list of all the comments in your blog including their
                     email, content, and reply.
                 </p>
-            </div>
-            <div>
-                <Button class="min-w-max"
-                    ><Link href="/admin/comment/create">Add User</Link></Button
-                >
             </div>
         </div>
         <div
@@ -39,11 +41,6 @@
                             {{ comment?.post?.title }}
                         </td>
                         <td class="text-gray-600 py-4 px-6 text-right">
-                            <Link
-                                :href="`/admin/comment/${comment?.id}/edit`"
-                                class="text-indigo-600 px-2"
-                                >Edit</Link
-                            >
                             <button
                                 @click="removeUser(comment?.id)"
                                 v-if="comment?.role != 'admin'"
@@ -74,6 +71,7 @@ import Pagination from "../../../Components/Pagination.vue";
 import Button from "../../../Components/Button.vue";
 import { Link, router, useForm } from "@inertiajs/vue3";
 import { usePopupStore } from "../../../../stores/popup";
+import { Head } from "@inertiajs/vue3";
 
 const props = defineProps({
     comments: Object,

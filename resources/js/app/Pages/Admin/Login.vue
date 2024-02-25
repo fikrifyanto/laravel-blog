@@ -1,4 +1,11 @@
 <template>
+    <Head>
+        <title>Tailwind Blog - Login</title>
+        <meta
+            name="description"
+            content="Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua."
+        />
+    </Head>
     <div class="bg-white h-screen overflow-hidden">
         <div class="relative isolate px-6 pt-14 lg:px-8 h-[95vh]">
             <div
@@ -111,6 +118,7 @@ import { ref } from "vue";
 import FormGroup from "../../Components/Form/FormGroup.vue";
 import FormInput from "../../Components/Form/FormInput.vue";
 import Button from "../../Components/Button.vue";
+import { Head } from "@inertiajs/vue3";
 
 import { useForm } from "@inertiajs/vue3";
 

@@ -45,6 +45,7 @@ class PostController extends Controller
 
             $media = Media::create([
                 'path' => $filePath,
+                'url' => url('storage/' . $filePath),
                 'name' => $post['title'] . ' Image',
             ]);
 
@@ -90,7 +91,8 @@ class PostController extends Controller
 
             $media = Media::create([
                 'path' => $filePath,
-                'name' => $file->getClientOriginalName(),
+                'url' => url('storage/' . $filePath),
+                'name' => $post['title'] . ' Image',
             ]);
 
             $post['media_id'] = $media->id;

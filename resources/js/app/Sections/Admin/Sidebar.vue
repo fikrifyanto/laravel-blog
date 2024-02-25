@@ -7,7 +7,7 @@
             <div
                 class="col-span-4 lg:col-span-5 bg-indigo-600 h-full px-4 py-5"
             >
-                <Link href="/admin/dashboard" class="flex items-center">
+                <Link href="/admin/user" class="flex items-center">
                     <img
                         class="h-8 w-auto"
                         src="https://tailwindui.com/img/logos/mark.svg?color=white"
@@ -21,24 +21,6 @@
                     <ul role="list">
                         <li>
                             <ul role="list" class="flex flex-col gap-2">
-                                <li
-                                    :class="{
-                                        'bg-indigo-700 text-white':
-                                            $page.url == '/admin/dashboard',
-                                        'bg-transparant text-slate-300':
-                                            $page.url != '/admin/dashboard',
-                                    }"
-                                    class="rounded-md p-2 text-sm font-sans hover:bg-indigo-700"
-                                >
-                                    <Link
-                                        href="/admin/dashboard"
-                                        class="flex items-center gap-3"
-                                        preserve-scroll
-                                    >
-                                        <HomeIcon class="h-6 w-6" />
-                                        Dashboard
-                                    </Link>
-                                </li>
                                 <li
                                     :class="{
                                         'bg-indigo-700 text-white':

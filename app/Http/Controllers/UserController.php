@@ -14,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
+        $users = User::paginate(8);
+
         return Inertia::render('Admin/User/Index', ['users' => $users]);
     }
 
@@ -33,7 +34,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->input());
+        $user = $request->input();
+
+        if ($request->file()) {
+            $file = $request->file('profile');
+            $filePath = $file->store('uploads', 'public');
+
+            $user['image_path'] = $filePath;
+            $user['image_url'] = url('storage/' . $filePath);
+        }
+
+        User::create($user);
 
         return redirect()->intended('admin/user');
     }
@@ -61,7 +72,19 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        User::find($id)->update($request->input());
+        $user = $request->input();
+
+        if ($request->file()) {
+            $file = $request->file('profile');
+            $filePath = $file->store('uploads', 'public');
+
+            $user['image_path'] = $filePath;
+            $user['image_url'] = url('storage/' . $filePath);
+        }
+
+        if (!$user['password']) $user['password'] = User::find($id)->password;
+
+        User::find($id)->update($user);
 
         return redirect()->intended('admin/user');
     }

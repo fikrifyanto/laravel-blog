@@ -1,4 +1,11 @@
 <template>
+    <Head>
+        <title>All Media</title>
+        <meta
+            name="description"
+            content="Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua."
+        />
+    </Head>
     <AdminLayout>
         <div class="flex justify-between mb-8 gap-4">
             <div>
@@ -28,7 +35,7 @@
                         <td class="py-4 px-6">
                             <img
                                 class="max-w-xs max-h-44"
-                                :src="`/storage/${media?.path}`"
+                                :src="`${media?.url}`"
                                 :alt="media.name"
                             />
                         </td>
@@ -51,7 +58,15 @@
                 </tbody>
             </table>
         </div>
-        <Pagination v-if="props.medias?.last_page > 1" class="mt-6" />
+        <Pagination
+            v-if="props.medias?.last_page > 1"
+            :from="props.medias?.from"
+            :to="props.medias?.to"
+            :total="props.medias?.total"
+            :current="props.medias?.current_page"
+            :links="props.medias?.links"
+            class="mt-6"
+        />
     </AdminLayout>
 </template>
 
@@ -61,6 +76,7 @@ import Pagination from "../../../Components/Pagination.vue";
 import Button from "../../../Components/Button.vue";
 import { Link, router, useForm } from "@inertiajs/vue3";
 import { usePopupStore } from "../../../../stores/popup";
+import { Head } from "@inertiajs/vue3";
 
 const props = defineProps({
     medias: Object,

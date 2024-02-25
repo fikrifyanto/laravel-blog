@@ -22,7 +22,6 @@ use App\Http\Controllers\CommentController;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', DashboardController::class);
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/post', PostController::class);
     Route::resource('/admin/category', CategoryController::class);

@@ -14,7 +14,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        $medias = Media::paginate(8);
+        $medias = Media::paginate(6);
 
         return Inertia::render('Admin/Media/Index', ['medias' => $medias]);
     }

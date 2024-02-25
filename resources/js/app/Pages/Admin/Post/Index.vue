@@ -1,4 +1,11 @@
 <template>
+    <Head>
+        <title>All Posts</title>
+        <meta
+            name="description"
+            content="Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua."
+        />
+    </Head>
     <AdminLayout>
         <div class="flex justify-between mb-8 gap-4">
             <div>
@@ -80,6 +87,7 @@ import Pagination from "../../../Components/Pagination.vue";
 import Button from "../../../Components/Button.vue";
 import { Link, router, useForm } from "@inertiajs/vue3";
 import { usePopupStore } from "../../../../stores/popup";
+import { Head } from "@inertiajs/vue3";
 
 const props = defineProps({
     posts: Object,
