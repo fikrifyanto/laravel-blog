@@ -1,13 +1,21 @@
 <template>
     <article class="flex max-w-xl flex-col items-start justify-between">
-        <div class="flex items-center gap-x-4 text-xs">
-            <time :datetime="props.post?.date" class="text-gray-500">{{
+        <img
+            class="border border-slate-200 rounded-2xl"
+            :src="post?.media?.url"
+            :alt="post?.title"
+        />
+        <div class="flex items-center gap-x-4 text-xs mt-8">
+            <time :datetime="post?.date" class="text-gray-500">{{
                 moment(props.post?.date).format("MMMM Do YYYY")
             }}</time>
             <Link
                 :href="`/${props.post?.category?.slug}`"
                 class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-                >{{ $helpers.capitalizeFirstLetter(props.post?.category?.name) }}</Link >
+                >{{
+                    $helpers.capitalizeFirstLetter(props.post?.category?.name)
+                }}</Link
+            >
         </div>
         <div class="group relative">
             <h3
@@ -17,25 +25,27 @@
                     {{ props.post?.title }}
                 </Link>
             </h3>
-            <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-                {{ props.post?.content }}
+            <p
+                class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 font-light"
+            >
+                {{ post?.content }}
             </p>
         </div>
         <div class="relative mt-8 flex items-center gap-x-4">
             <img
-                :src="props.post?.user?.image_url"
+                :src="post?.user?.image_url"
                 alt=""
                 class="h-10 w-10 rounded-full bg-gray-50"
             />
             <div class="text-sm leading-6">
                 <p class="font-semibold text-gray-900">
-                    <a :href="props.post?.user?.href">
+                    <a :href="`/author/${post?.user?.username}`">
                         <span class="absolute inset-0" />
-                        {{ props.post?.user?.name }}
+                        {{ post?.user?.name }}
                     </a>
                 </p>
                 <p class="text-gray-600">
-                    {{ $helpers.capitalizeFirstLetter(props.post?.user?.role) }}
+                    {{ $helpers.capitalizeFirstLetter(post?.user?.role) }}
                 </p>
             </div>
         </div>
@@ -43,8 +53,8 @@
 </template>
 
 <script setup>
-import moment from "moment"
-import {Link} from "@inertiajs/vue3"
+import moment from "moment";
+import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
     post: {

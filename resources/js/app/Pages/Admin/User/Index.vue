@@ -56,7 +56,15 @@
                 </tbody>
             </table>
         </div>
-        <Pagination v-if="props.users?.last_page > 1" class="mt-6" />
+        <Pagination
+            v-if="props.users?.last_page > 1"
+            :from="props.users?.from"
+            :to="props.users?.to"
+            :total="props.users?.total"
+            :current="props.users?.current_page"
+            :links="props.users?.links"
+            class="mt-6"
+        />
     </AdminLayout>
 </template>
 

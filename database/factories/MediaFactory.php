@@ -18,7 +18,7 @@ class MediaFactory extends Factory
     {
         return [
             'name' => fake()->sentence(5),
-            'url' => 'https://picsum.photos/400/300'
+            'url' => 'https://picsum.photos/800/600'
         ];
     }
 }
