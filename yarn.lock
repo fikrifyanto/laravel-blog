@@ -157,15 +157,6 @@
     nprogress "^0.2.0"
     qs "^6.9.0"
 
-"@inertiajs/inertia@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@inertiajs/inertia/-/inertia-0.11.1.tgz#f324f09a03e1dd944404bd09935c0141a4b3a85d"
-  integrity sha512-btmV53c54oW4Z9XF0YyTdIUnM7ue0ONy3/KJOz6J1C5CYIwimiKfDMpz8ZbGJuxS+SPdOlNsqj2ZhlHslpJRZg==
-  dependencies:
-    axios "^0.21.1"
-    deepmerge "^4.0.0"
-    qs "^6.9.0"
-
 "@inertiajs/vue3@^1.0.14":
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/@inertiajs/vue3/-/vue3-1.0.14.tgz#f0d8f4a781cfa215ec39c5a81512e2e5de4b33f0"
@@ -480,13 +471,6 @@ autoprefixer@^10.4.17:
     picocolors "^1.0.0"
     postcss-value-parser "^4.2.0"
 
-axios@^0.21.1:
-  version "0.21.4"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
-  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
-  dependencies:
-    follow-redirects "^1.14.0"
-
 axios@^1.2.0, axios@^1.6.4:
   version "1.6.7"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.7.tgz#7b48c2e27c96f9c68a2f8f31e2ab19f59b06b0a7"
@@ -752,7 +736,7 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
-follow-redirects@^1.14.0, follow-redirects@^1.15.4:
+follow-redirects@^1.15.4:
   version "1.15.5"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.5.tgz#54d4d6d062c0fa7d9d17feb008461550e3ba8020"
   integrity sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==

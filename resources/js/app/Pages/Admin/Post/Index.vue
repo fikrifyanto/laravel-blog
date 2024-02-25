@@ -50,12 +50,13 @@
                                 class="text-indigo-600 px-2"
                                 >Edit</Link
                             >
-                            <Link
+                            <button
+                                @click="removePost(post?.id)"
                                 v-if="post?.role != 'admin'"
-                                href=""
                                 class="text-red-600 px-2"
-                                >Delete</Link
                             >
+                                Delete
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -77,9 +78,29 @@
 import AdminLayout from "../../../Layout/Admin.vue";
 import Pagination from "../../../Components/Pagination.vue";
 import Button from "../../../Components/Button.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, router, useForm } from "@inertiajs/vue3";
+import { usePopupStore } from "../../../../stores/popup";
 
 const props = defineProps({
     posts: Object,
 });
+
+const popup = usePopupStore();
+
+function removePost(postId) {
+    popup.setTitle("Are you sure?");
+    popup.setMessage("Data cannot be restore after deleted");
+    popup.setType("danger");
+    popup.setCancelButtonText("Cancel");
+    popup.setConfirmButtonText("Delete!");
+    popup.show();
+
+    popup.change((data) => {
+        if (data.isConfirm) {
+            useForm({}).delete(`/admin/post/${postId}`, {
+                onSuccess: () => router.reload({ only: ["posts"] }),
+            });
+        }
+    });
+}
 </script>

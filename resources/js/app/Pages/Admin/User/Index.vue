@@ -64,9 +64,8 @@
 import AdminLayout from "../../../Layout/Admin.vue";
 import Pagination from "../../../Components/Pagination.vue";
 import Button from "../../../Components/Button.vue";
-import { Link, router } from "@inertiajs/vue3";
+import { Link, router, useForm } from "@inertiajs/vue3";
 import { usePopupStore } from "../../../../stores/popup";
-import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
     users: Object,
@@ -78,20 +77,15 @@ function removeUser(userId) {
     popup.setTitle("Are you sure?");
     popup.setMessage("Data cannot be restore after deleted");
     popup.setType("danger");
-    popup.setForms({
-        email: {
-            type: "text",
-            placeholder: "Type your email",
-        },
-    });
     popup.setCancelButtonText("Cancel");
     popup.setConfirmButtonText("Delete!");
     popup.show();
 
     popup.change((data) => {
         if (data.isConfirm) {
-            Inertia.delete(`/admin/user/${userId}`);
-            router.reload({ only: ["users"] });
+            useForm({}).delete(`/admin/user/${userId}`, {
+                onSuccess: () => router.reload({ only: ["users"] }),
+            });
         }
     });
 }
