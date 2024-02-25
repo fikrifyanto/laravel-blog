@@ -5,7 +5,7 @@
                 <h2
                     class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
                 >
-                    {{ props.category?.name }}
+                    {{ $helpers.capitalizeFirstLetter(props.category?.name) }}
                 </h2>
                 <p class="mt-2 text-lg leading-8 text-gray-600 font-light">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit.
@@ -73,7 +73,11 @@
                                 </a>
                             </p>
                             <p class="text-gray-600">
-                                {{ post?.user?.role }}
+                                {{
+                                    $helpers.capitalizeFirstLetter(
+                                        post?.user?.role
+                                    )
+                                }}
                             </p>
                         </div>
                     </div>

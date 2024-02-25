@@ -31,7 +31,7 @@
                     :href="`/category/${menu}`"
                     class="text-sm font-semibold leading-6 text-gray-900"
                 >
-                    {{ menu }}
+                    {{ $helpers.capitalizeFirstLetter(menu) }}
                 </Link>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
