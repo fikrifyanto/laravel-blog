@@ -16,7 +16,7 @@
             </div>
         </div>
         <form @submit.prevent="submit" class="flex flex-col gap-4 max-w-xl">
-            <FormGroup label="Featured Image" for="profile">
+            <FormGroup label="Profile" for="profile">
                 <FormFile
                     v-model="form.profile"
                     :file-url="props.user?.image_url"
