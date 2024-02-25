@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // User Factory
         if (!User::find(1)) {
             User::create([
                 'name' => 'Admin',
@@ -22,6 +24,24 @@ class DatabaseSeeder extends Seeder
             ]);
         };
 
+        // Post Factory
         Post::factory(10)->create();
+
+        // Comment Factory
+        $posts = Post::all();
+        foreach ($posts as $post) {
+            Comment::factory(4)->create([
+                'post_id' => $post->id,
+            ]);
+        }
+
+        // Comment Reply Factory
+        $comments = Comment::all();
+        foreach ($comments as $comment) {
+            Comment::factory(4)->create([
+                'parent_id' => $comment->id,
+                'post_id' => $comment->post_id,
+            ]);
+        }
     }
 }

@@ -2,15 +2,15 @@
     <AdminLayout>
         <div class="flex justify-between mb-8 gap-4">
             <div>
-                <h1 class="font-medium">Users</h1>
+                <h1 class="font-medium">Comment</h1>
                 <p class="text-slate-600 text-sm mt-2">
-                    A list of all the users in your account including their
-                    name, title, email and role.
+                    A list of all the comments in your blog including their
+                    email, content, and reply.
                 </p>
             </div>
             <div>
                 <Button class="min-w-max"
-                    ><Link href="/admin/user/create">Add User</Link></Button
+                    ><Link href="/admin/comment/create">Add User</Link></Button
                 >
             </div>
         </div>
@@ -19,34 +19,34 @@
         >
             <table class="table-auto w-full text-sm">
                 <thead class="border-b border-slate-300 bg-slate-50">
-                    <th class="font-medium text-left py-4 px-6">Name</th>
-                    <th class="font-medium text-left py-4 px-6">Username</th>
-                    <th class="font-medium text-left py-4 px-6">Role</th>
+                    <th class="font-medium text-left py-4 px-6">Email</th>
+                    <th class="font-medium text-left py-4 px-6">Content</th>
+                    <th class="font-medium text-left py-4 px-6">Post</th>
                     <th></th>
                 </thead>
                 <tbody>
                     <tr
                         :class="{
-                            'border-b': key != props.users?.data?.length,
+                            'border-b': key != props.comments?.data?.length,
                         }"
-                        v-for="(user, key) in props.users?.data"
+                        v-for="(comment, key) in props.comments?.data"
                     >
-                        <td class="py-4 px-6">{{ user?.name }}</td>
+                        <td class="py-4 px-6">{{ comment?.email }}</td>
                         <td class="text-gray-600 py-4 px-6">
-                            {{ user?.username }}
+                            {{ comment?.content }}
                         </td>
                         <td class="text-gray-600 py-4 px-6">
-                            {{ user?.role }}
+                            {{ comment?.post?.title }}
                         </td>
                         <td class="text-gray-600 py-4 px-6 text-right">
                             <Link
-                                :href="`/admin/user/${user?.id}/edit`"
+                                :href="`/admin/comment/${comment?.id}/edit`"
                                 class="text-indigo-600 px-2"
                                 >Edit</Link
                             >
                             <button
-                                @click="removeUser(user?.id)"
-                                v-if="user?.role != 'admin'"
+                                @click="removeUser(comment?.id)"
+                                v-if="comment?.role != 'admin'"
                                 class="text-red-600 px-2"
                             >
                                 Delete
@@ -56,7 +56,15 @@
                 </tbody>
             </table>
         </div>
-        <Pagination v-if="props.users?.last_page > 1" class="mt-6" />
+        <Pagination
+            v-if="props.comments?.last_page > 1"
+            :from="props.comments?.from"
+            :to="props.comments?.to"
+            :total="props.comments?.total"
+            :current="props.comments?.current_page"
+            :links="props.comments?.links"
+            class="mt-6"
+        />
     </AdminLayout>
 </template>
 
@@ -68,12 +76,12 @@ import { Link, router, useForm } from "@inertiajs/vue3";
 import { usePopupStore } from "../../../../stores/popup";
 
 const props = defineProps({
-    users: Object,
+    comments: Object,
 });
 
 const popup = usePopupStore();
 
-function removeUser(userId) {
+function removeUser(commentId) {
     popup.setTitle("Are you sure?");
     popup.setMessage("Data cannot be restore after deleted");
     popup.setType("danger");
@@ -83,8 +91,8 @@ function removeUser(userId) {
 
     popup.change((data) => {
         if (data.isConfirm) {
-            useForm({}).delete(`/admin/user/${userId}`, {
-                onSuccess: () => router.reload({ only: ["users"] }),
+            useForm({}).delete(`/admin/comment/${commentId}`, {
+                onSuccess: () => router.reload({ only: ["comments"] }),
             });
         }
     });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,7 +13,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Comment');
+        $comments = Comment::with('post')->paginate(6);
+
+        return Inertia::render('Admin/Comment/Index', ['comments' => $comments]);
     }
 
     /**
@@ -20,7 +23,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Comment/Add');
     }
 
     /**
@@ -28,7 +31,9 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Comment::create($request->input());
+
+        return redirect()->intended('admin/comment');
     }
 
     /**
@@ -44,7 +49,9 @@ class CommentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comment = Comment::find($id);
+
+        return Inertia::render('Admin/Comment/Edit', ['comment' => $comment]);
     }
 
     /**
@@ -52,7 +59,9 @@ class CommentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Comment::find($id)->update($request->input());
+
+        return redirect()->intended('admin/comment');
     }
 
     /**
@@ -60,6 +69,6 @@ class CommentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Comment::destroy($id);
     }
 }
