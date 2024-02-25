@@ -66,6 +66,7 @@
                     />
                 </div>
             </div>
+            <Comment :comments="post.comments"/>
         </div>
         <Related :posts="props.related" />
     </HomeLayout>
@@ -74,6 +75,7 @@
 <script setup>
 import HomeLayout from "../../Layout/Home.vue";
 import Related from "../../Sections/Home/Related.vue";
+import Comment from "../../Sections/Home/Comment.vue"
 
 const props = defineProps({
     post: Object,

@@ -42,14 +42,5 @@ class DatabaseSeeder extends Seeder
                 'post_id' => $post->id,
             ]);
         }
-
-        // Comment Reply Factory
-        $comments = Comment::all();
-        foreach ($comments as $comment) {
-            Comment::factory(4)->create([
-                'parent_id' => $comment->id,
-                'post_id' => $comment->post_id,
-            ]);
-        }
     }
 }

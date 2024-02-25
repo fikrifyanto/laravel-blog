@@ -17,6 +17,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
+            'name' => fake()->name(),
             'email' => fake()->safeEmail(),
             'content' => fake()->sentence()
         ];

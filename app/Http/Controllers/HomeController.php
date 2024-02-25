@@ -46,7 +46,7 @@ class HomeController extends Controller
 
     public function post(string $slug)
     {
-        $post = Post::whereSlug($slug)->with('media')->with('category')->first();
+        $post = Post::whereSlug($slug)->with('media')->with('category')->with('comments')->first();
 
         if (!$post) {
             abort(404);
